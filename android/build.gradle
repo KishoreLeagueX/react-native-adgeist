@@ -83,6 +83,7 @@ android {
 
 repositories {
   mavenCentral()
+  maven { url 'https://jitpack.io' }
   google()
 }
 
@@ -90,6 +91,8 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
   implementation "com.facebook.react:react-android"
+  implementation "com.github.KishoreLeagueX:android-adgeist-sdk:v1.0.6"
+  implementation "com.google.code.gson:gson:2.10.1" 
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 

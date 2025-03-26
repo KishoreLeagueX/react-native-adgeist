@@ -1,12 +1,15 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-adgeist';
-
-const result = multiply(3, 7);
+import { View, StyleSheet, Dimensions } from 'react-native';
+import { BannerAd } from 'react-native-adgeist';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <BannerAd
+        dataPublisherId="67c99c7a34929568f405e7ff"
+        dataAdSlot="67a056c63205fce2290d1cda"
+        width={Dimensions.get('window').width}
+        height={300}
+      />
     </View>
   );
 }
