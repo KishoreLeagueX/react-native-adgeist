@@ -1,6 +1,6 @@
 {
   "name": "react-native-adgeist",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Adtech platform to serve advertisements to publishers app",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
