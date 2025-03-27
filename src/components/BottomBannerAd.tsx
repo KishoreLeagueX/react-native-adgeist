@@ -7,6 +7,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Adgeist from '../NativeAdgeist';
 
@@ -72,7 +73,7 @@ export const BottomBannerAd: React.FC<AdBannerTypes> = ({
   if (!adData?.creative?.fileUrl) return null;
 
   return (
-    <TouchableOpacity
+    <TouchableWithoutFeedback
       style={styles.container}
       onPress={handleClick}
       accessible
@@ -104,7 +105,7 @@ export const BottomBannerAd: React.FC<AdBannerTypes> = ({
           <Text style={styles.buttonText}>Visit Site</Text>
         </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 };
 

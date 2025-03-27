@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Adgeist from '../NativeAdgeist';
 
@@ -76,47 +76,48 @@ export const BannerAd: React.FC<AdBannerTypes> = ({
   if (!adData?.creative?.fileUrl) return null;
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={handleClick}
-      accessible
-      accessibilityLabel="Ad Banner"
-    >
-      <Image
-        style={[styles.creative, { width, height }]}
-        source={{ uri: adData.creative.fileUrl }}
-      />
-      <View style={styles.options}>
-        <Text style={styles.option}>x</Text>
-        <Text style={styles.option}>i</Text>
-      </View>
-      <View style={styles.adContent}>
-        <Image style={styles.logo} source={{ uri: adData.creative.fileUrl }} />
-        <View style={styles.textContainer}>
-          <View style={styles.titleRow}>
-            <Text style={styles.adBadge}>AD</Text>
-            <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-              {adData.creative.title}
+    <TouchableWithoutFeedback accessible accessibilityLabel="Ad Banner">
+      <View style={styles.container}>
+        <Image
+          style={[styles.creative, { width, height }]}
+          source={{ uri: adData.creative.fileUrl }}
+        />
+        <View style={styles.options}>
+          <Text style={styles.option}>x</Text>
+          <Text style={styles.option}>i</Text>
+        </View>
+        <View style={styles.adContent}>
+          <Image
+            style={styles.logo}
+            source={{ uri: adData.creative.fileUrl }}
+          />
+          <View style={styles.textContainer}>
+            <View style={styles.titleRow}>
+              <Text style={styles.adBadge}>AD</Text>
+              <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+                {adData.creative.title}
+              </Text>
+            </View>
+            <Text
+              style={styles.description}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {adData.creative.description}
             </Text>
           </View>
-          <Text
-            style={styles.description}
-            numberOfLines={1}
-            ellipsizeMode="tail"
+          <TouchableWithoutFeedback
+            onPress={handleClick}
+            accessible
+            accessibilityLabel="Visit Site Button"
           >
-            {adData.creative.description}
-          </Text>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Visit Site</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleClick}
-          accessible
-          accessibilityLabel="Visit Site Button"
-        >
-          <Text style={styles.buttonText}>Visit Site</Text>
-        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -152,6 +153,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     alignItems: 'center',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopColor: '#00000022',
+    borderTopWidth: 1,
   },
   logo: {
     width: 35,
