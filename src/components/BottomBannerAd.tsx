@@ -25,15 +25,11 @@ interface AdData {
 interface AdBannerTypes {
   dataPublisherId: string;
   dataAdSlot: string;
-  width: number;
-  height: number;
 }
 
-export const BannerAd: React.FC<AdBannerTypes> = ({
+export const BottomBannerAd: React.FC<AdBannerTypes> = ({
   dataPublisherId,
   dataAdSlot,
-  width,
-  height,
 }) => {
   const [adData, setAdData] = useState<AdData | null>(null);
 
@@ -82,14 +78,6 @@ export const BannerAd: React.FC<AdBannerTypes> = ({
       accessible
       accessibilityLabel="Ad Banner"
     >
-      <Image
-        style={[styles.creative, { width, height }]}
-        source={{ uri: adData.creative.fileUrl }}
-      />
-      <View style={styles.options}>
-        <Text style={styles.option}>x</Text>
-        <Text style={styles.option}>i</Text>
-      </View>
       <View style={styles.adContent}>
         <Image style={styles.logo} source={{ uri: adData.creative.fileUrl }} />
         <View style={styles.textContainer}>
