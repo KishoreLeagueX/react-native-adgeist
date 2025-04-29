@@ -37,13 +37,12 @@ export const BottomBannerAd: React.FC<AdBannerTypes> = ({
   useEffect(() => {
     (async () => {
       try {
-        const json: string = await Adgeist.fetchCreative(
+        const response: Object = await Adgeist.fetchCreative(
           dataAdSlot,
           dataPublisherId
         );
-        const creative: { data: AdData } = JSON.parse(json);
+        const creative: { data: AdData } = response as { data: AdData };
         setAdData(creative.data);
-
         await Adgeist.sendCreativeAnalytic(
           creative.data._id,
           dataAdSlot,

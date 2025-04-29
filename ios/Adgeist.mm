@@ -24,28 +24,23 @@
 
 - (void)fetchCreative:(NSString *)adSpaceId
           publisherId:(NSString *)publisherId
-             resolver:(RCTPromiseResolveBlock)resolve
-             rejecter:(RCTPromiseRejectBlock)reject
-{
-    [adgeist fetchCreativeWithAdSpaceId:adSpaceId
-                            publisherId:publisherId
-                                resolver:resolve
-                                rejecter:reject];
+              resolve:(RCTPromiseResolveBlock)resolve
+               reject:(RCTPromiseRejectBlock)reject {
+  [adgeist fetchCreativeWithAdSpaceId:adSpaceId publisherId:publisherId resolver:resolve rejecter:reject];
 }
 
 - (void)sendCreativeAnalytic:(NSString *)campaignId
                    adSpaceId:(NSString *)adSpaceId
                  publisherId:(NSString *)publisherId
                    eventType:(NSString *)eventType
-                    resolver:(RCTPromiseResolveBlock)resolve
-                    rejecter:(RCTPromiseRejectBlock)reject
-{
-    [adgeist sendCreativeAnalyticWithCampaignId:campaignId
-                                      adSpaceId:adSpaceId
-                                    publisherId:publisherId
-                                      eventType:eventType
-                                       resolver:resolve
-                                       rejecter:reject];
+                     resolve:(RCTPromiseResolveBlock)resolve
+                      reject:(RCTPromiseRejectBlock)reject {
+  [adgeist sendCreativeAnalyticWithCampaignId:campaignId
+                                  adSpaceId:adSpaceId
+                                publisherId:publisherId
+                                  eventType:eventType
+                                   resolver:resolve
+                                   rejecter:reject];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
