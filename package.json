@@ -162,13 +162,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "codegen",
-      [
-        "commonjs",
-        {
-          "esm": true
-        }
-      ],
       [
         "module",
         {
