@@ -190,10 +190,6 @@
     "jsSrcsDir": "src",
     "android": {
       "javaPackageName": "com.adgeist"
-    },
-    "outputDir": {
-      "ios": "ios/generated",
-      "android": "android/generated"
     }
   },
   "create-react-native-library": {
