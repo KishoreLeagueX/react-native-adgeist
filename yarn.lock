@@ -6778,10 +6778,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"index-to-position@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "index-to-position@npm:1.0.0"
-  checksum: 56c812b08ea597d0a5387731a66cc9944dec73a24701182db26c01a2028c3107a4bcce830f9400a021eaa2212de5039602e6fccf4864576d6334d832ff1d60f6
+"index-to-position@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "index-to-position@npm:1.1.0"
+  checksum: 078b05777ba4ccc2af13328cbdef8ac945c885aed7c28bf55b17b7e7722507dfb3afbdeb30b59ff224374857147d16043da1bcb2a4dc533c7924d81873ef4363
   languageName: node
   linkType: hard
 
@@ -8208,9 +8208,9 @@ __metadata:
   linkType: hard
 
 "ky@npm:^1.2.0":
-  version: 1.7.5
-  resolution: "ky@npm:1.7.5"
-  checksum: 868793ff364b64b24a18c9b0484ef133b762cd0a824e0e06b45cbb2e34ee465c3ce3b88218422f7ce0413bc3900edebbfc564cecf5f5d29f208e3c7de8300169
+  version: 1.8.1
+  resolution: "ky@npm:1.8.1"
+  checksum: 802f3023ae1060b1d8c11376b9866fb5be82fa5174473d82c16a25d2905b3b41bc0121a134be87d8e3b40b24d56d34920a376e653785310803cbb8ea7cd43f85
   languageName: node
   linkType: hard
 
@@ -9946,13 +9946,13 @@ __metadata:
   linkType: hard
 
 "parse-json@npm:^8.0.0":
-  version: 8.2.0
-  resolution: "parse-json@npm:8.2.0"
+  version: 8.3.0
+  resolution: "parse-json@npm:8.3.0"
   dependencies:
     "@babel/code-frame": ^7.26.2
-    index-to-position: ^1.0.0
-    type-fest: ^4.37.0
-  checksum: 7238fe443668b4e0c278b53d80863062c84a0ed326a79f40f2cdf6ba98a3f43f452ce4bae470cb8a859069daf457b2ae30f4e7560b61742442959157e22b5813
+    index-to-position: ^1.1.0
+    type-fest: ^4.39.1
+  checksum: 23812dd66a8ceedfeb0fd8a92c96b88b18bc1030cf1f07cd29146b711a208ef91ac995cf14517422f908fa930f84324086bf22fdcc1013029776cc01d589bae4
   languageName: node
   linkType: hard
 
@@ -12052,10 +12052,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.18.2, type-fest@npm:^4.21.0, type-fest@npm:^4.37.0, type-fest@npm:^4.6.0":
-  version: 4.38.0
-  resolution: "type-fest@npm:4.38.0"
-  checksum: 85fd7f3feff42bab6eac99f9f056d67932c36f834da87d68b0e89c040671415a902848c81be4d0f02919d157d7eae70dccf42c42dd2e2000d80e3ae1b97a9101
+"type-fest@npm:^4.18.2, type-fest@npm:^4.21.0, type-fest@npm:^4.39.1, type-fest@npm:^4.6.0":
+  version: 4.40.1
+  resolution: "type-fest@npm:4.40.1"
+  checksum: cb0f48afdd1f718bd2d5e64f355512afd5a672d7eb39edf601d3b37f2b92fa1be0301ba845a3d9212befc6325c6f9b1b7680b2f201845061f39d2a35bb6931dc
   languageName: node
   linkType: hard
 
