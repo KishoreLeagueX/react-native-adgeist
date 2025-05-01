@@ -163,6 +163,13 @@
     "source": "src",
     "output": "lib",
     "targets": [
+      "codegen",
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
       [
         "module",
         {
@@ -182,9 +189,14 @@
     "name": "RNAdgeistSpec",
     "type": "modules",
     "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
     "android": {
       "javaPackageName": "com.adgeist"
-    }
+    },
+    "includesGeneratedCode": true
   },
   "create-react-native-library": {
     "type": "turbo-module",

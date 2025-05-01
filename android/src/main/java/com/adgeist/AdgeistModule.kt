@@ -4,9 +4,14 @@ import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.adgeistcreatives.AdGeistSDK
-import com.google.gson.Gson
 import com.facebook.react.bridge.Promise
 import android.util.Log
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.WritableMap
+import com.adgeistcreatives.CreativeData
+import com.adgeistcreatives.Campaign
+import com.adgeistcreatives.Creative
+import com.adgeistcreatives.BudgetSettings
 
 @ReactModule(name = AdgeistModule.NAME)
 class AdgeistModule(reactContext: ReactApplicationContext) :
@@ -21,28 +26,63 @@ class AdgeistModule(reactContext: ReactApplicationContext) :
   }
 
   override fun fetchCreative(adSpaceId: String, publisherId: String, promise: Promise) {
-      getAd.fetchCreative(adSpaceId, publisherId) { adData ->
-          if (adData != null) {
-              val json = Gson().toJson(adData)
-              promise.resolve(json)
-          } else {
-              promise.reject("NO_AD", "Ad data not available")
-          }
+    getAd.fetchCreative(adSpaceId, publisherId) { adData ->
+      if (adData != null) {
+        promise.resolve(adData.toWritableMap())
+      } else {
+        promise.reject("NO_AD", "Ad data not available")
       }
+    }
   }
 
   override fun sendCreativeAnalytic(campaignId: String, adSpaceId: String, publisherId: String, eventType: String, promise: Promise) {
     postCreativeAnalytic.sendTrackingData(campaignId, adSpaceId, publisherId, eventType) { adData ->
-        if (adData != null) {
-            Log.d("MyActivity of app module", adData)
-            promise.resolve(adData)
-        } else {
-            promise.reject("NO_AD", "Coudn't find the campaign to update analytics")
-        }
+      if (adData != null) {
+        Log.d("MyActivity of app module", adData)
+        promise.resolve(adData)
+      } else {
+        promise.reject("NO_AD", "Couldn't find the campaign to update analytics")
+      }
     }
   }
 
   companion object {
     const val NAME = "Adgeist"
   }
+}
+
+// Extension function to convert CreativeData to WritableMap
+fun CreativeData.toWritableMap(): WritableMap {
+  val map = Arguments.createMap()
+  map.putBoolean("success", success)
+  map.putString("message", message)
+
+  val dataMap = Arguments.createMap()
+  data?.let { campaign ->
+    dataMap.putString("_id", campaign._id)
+    dataMap.putString("name", campaign.name)
+
+    val creativeMap = Arguments.createMap()
+    campaign.creative?.let { creative ->
+      creativeMap.putString("title", creative.title)
+      creativeMap.putString("description", creative.description)
+      creativeMap.putString("fileUrl", creative.fileUrl)
+      creativeMap.putString("ctaUrl", creative.ctaUrl)
+      creativeMap.putString("type", creative.type)
+      creativeMap.putString("fileName", creative.fileName)
+      creativeMap.putString("createdAt", creative.createdAt)
+      creativeMap.putString("updatedAt", creative.updatedAt)
+    }
+    dataMap.putMap("creative", creativeMap)
+
+    val budgetMap = Arguments.createMap()
+    campaign.budgetSettings?.let { budget ->
+      budgetMap.putDouble("totalBudget", budget.totalBudget)
+      budgetMap.putDouble("spentBudget", budget.spentBudget)
+    }
+    dataMap.putMap("budgetSettings", budgetMap)
+  }
+
+  map.putMap("data", dataMap)
+  return map
 }

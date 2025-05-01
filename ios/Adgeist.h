@@ -1,7 +1,7 @@
 #import <React/RCTEventEmitter.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import <RNAdgeistSpec/RNAdgeistSpec.h>
+#import "generated/RNAdgeistSpec/RNAdgeistSpec.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
