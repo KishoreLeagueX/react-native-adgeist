@@ -7,6 +7,11 @@
   "source": "./src/index.tsx",
   "react-native": "./src/index.tsx",
   "types": "./lib/typescript/src/index.d.ts",
+  "expo": {
+    "plugins": [
+      "./app.plugin.js"
+    ]
+  },
   "exports": {
     "./package.json": "./package.json"
   },
