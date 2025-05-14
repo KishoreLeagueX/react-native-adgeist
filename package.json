@@ -2,11 +2,14 @@
   "name": "react-native-adgeist",
   "version": "1.1.4",
   "description": "Adtech platform to serve advertisements to publishers app",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "source": "./src/index.tsx",
+  "react-native": "./src/index.tsx",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "lib",
@@ -167,6 +170,7 @@
     "source": "src",
     "output": "lib",
     "targets": [
+      "codegen",
       "commonjs",
       "module",
       [
