@@ -3,21 +3,21 @@ package com.adgeist
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import com.facebook.react.bridge.ReactApplicationContext
-import com.adgeistcreatives.AdGeistSDK
 import com.facebook.react.bridge.Promise
 import android.util.Log
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
-import com.adgeistcreatives.CreativeData
-import com.adgeistcreatives.Campaign
-import com.adgeistcreatives.Creative
-import com.adgeistcreatives.BudgetSettings
+import com.adgeistkit.AdgeistCore
+import com.adgeistkit.CreativeDataModel
+import com.adgeistkit.Campaign
+import com.adgeistkit.Creative
+import com.adgeistkit.BudgetSettings
 
 @ReactModule(name = AdgeistModule.NAME)
 class AdgeistModule(reactContext: ReactApplicationContext) :
   NativeAdgeistSpec(reactContext), TurboModule {
 
-  private val adGeist = AdGeistSDK.initialize(reactContext.applicationContext)
+  private val adGeist = AdgeistCore.initialize(reactContext.applicationContext)
   private val getAd = adGeist.getCreative()
   private val postCreativeAnalytic = adGeist.postCreativeAnalytics()
 
@@ -48,11 +48,14 @@ class AdgeistModule(reactContext: ReactApplicationContext) :
 
   companion object {
     const val NAME = "Adgeist"
+
+    fun initialize(context: Context) {
+    }
   }
 }
 
 // Extension function to convert CreativeData to WritableMap
-fun CreativeData.toWritableMap(): WritableMap {
+fun CreativeDataModel.toWritableMap(): WritableMap {
   val map = Arguments.createMap()
   map.putBoolean("success", success)
   map.putString("message", message)
