@@ -2,7 +2,7 @@ import {
   type ConfigPlugin,
   type ExportedConfigWithProps,
   withAppBuildGradle,
-  withMainActivity,
+  withMainApplication,
 } from '@expo/config-plugins';
 import {
   type ApplicationProjectFile,
@@ -12,19 +12,19 @@ import { mergeContents } from '@expo/config-plugins/build/utils/generateCode';
 
 export const withRNAdgeistMainActivity: ConfigPlugin = (config) => {
   return withAppBuildGradle(
-    withMainActivity(config, readMainActivityFileAndUpdateContents),
+    withMainApplication(config, readMainApplicationFileAndUpdateContents),
     readBuildGradleFileAndUpdateContents
   );
 };
 
 // 1. MainActivity Modifications
-async function readMainActivityFileAndUpdateContents(
+async function readMainApplicationFileAndUpdateContents(
   config: ExportedConfigWithProps<ApplicationProjectFile>
 ): Promise<ExportedConfigWithProps<ApplicationProjectFile>> {
-  const { modResults: mainActivityFile } = config;
+  const { modResults: mainApplicationFile } = config;
 
-  const worker = getCompatibleFileUpdater(mainActivityFile.language);
-  mainActivityFile.contents = worker(mainActivityFile.contents);
+  const worker = getCompatibleFileUpdater(mainApplicationFile.language);
+  mainApplicationFile.contents = worker(mainApplicationFile.contents);
 
   return config;
 }
@@ -38,7 +38,7 @@ function readBuildGradleFileAndUpdateContents(
     modResults.contents = modResults.contents.replace(
       /dependencies\s*{/,
       `dependencies {
-        implementation "ai.adgeist:adgeistkit:+" // AdgeistKit Dependency`
+        implementation "ai.adgeist:adgeistkit:0.0.1" // AdgeistKit Dependency`
     );
   }
 
@@ -70,28 +70,28 @@ export function ktFileUpdater(originalContents: string): string {
     throw new Error('Could not find suitable insertion point in MainActivity');
   }
 
-  const libraryImportCodeBlock = 'import com.adgeist.AdgeistModule';
-  const rightBeforeClassDeclaration = /import com\.facebook\.react/g;
+  const packageImportCodeBlock = 'import com.adgeist.AdgeistPackage';
+  const rightBeforeClassDeclaration = /import com.facebook.react.ReactPackage/;
 
   const importMergeResults = mergeContents({
-    tag: '@react-native-adgeist/library-import',
+    tag: '@react-native-adgeist/package-import',
     src: originalContents,
-    newSrc: libraryImportCodeBlock,
+    newSrc: packageImportCodeBlock,
     anchor: rightBeforeClassDeclaration,
     offset: 0,
     comment: '// React Native Adgeist',
   });
 
-  const onConfigurationChangedCodeBlock = `AdgeistModule.initialize(this)\n`;
-  const rightAfterOnCreate = /super\.onCreate\(/g;
+  const onConfigurationChangedCodeBlock = `packages.add(AdgeistPackage())`;
+  const rightAfterOnCreate = /return packages/;
 
   const implementationMergeResults = mergeContents({
-    tag: '@react-native-adgeist/init',
+    tag: '@react-native-adgeist/package-initialization',
     src: importMergeResults.contents,
     newSrc: onConfigurationChangedCodeBlock,
     anchor: rightAfterOnCreate,
     offset: 1,
-    comment: '// AdgeistKit Initialization',
+    comment: '// Package Initialization',
   });
 
   return implementationMergeResults.contents;
