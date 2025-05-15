@@ -90,7 +90,7 @@ export function ktFileUpdater(originalContents: string): string {
     src: importMergeResults.contents,
     newSrc: onConfigurationChangedCodeBlock,
     anchor: rightAfterOnCreate,
-    offset: 1,
+    offset: 0,
     comment: '// Package Initialization',
   });
 
