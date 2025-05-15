@@ -17,6 +17,12 @@ import com.adgeistkit.BudgetSettings
 class AdgeistModule(reactContext: ReactApplicationContext) :
   NativeAdgeistSpec(reactContext), TurboModule {
 
+  private val TAG = "AdgeistModule"
+  
+  init {
+    Log.d(TAG, "AdgeistModule initialized")
+  }
+
   private val adGeist = AdgeistCore.initialize(reactContext.applicationContext)
   private val getAd = adGeist.getCreative()
   private val postCreativeAnalytic = adGeist.postCreativeAnalytics()
