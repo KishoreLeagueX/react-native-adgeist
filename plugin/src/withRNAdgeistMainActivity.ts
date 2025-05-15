@@ -83,13 +83,13 @@ export function ktFileUpdater(originalContents: string): string {
   });
 
   const onConfigurationChangedCodeBlock = `packages.add(AdgeistPackage())`;
-  const rightAfterOnCreate = /return packages/;
+  const rightBeforeOnReturnStatement = /return packages/;
 
   const implementationMergeResults = mergeContents({
     tag: '@react-native-adgeist/package-initialization',
     src: importMergeResults.contents,
     newSrc: onConfigurationChangedCodeBlock,
-    anchor: rightAfterOnCreate,
+    anchor: rightBeforeOnReturnStatement,
     offset: 0,
     comment: '// Package Initialization',
   });
