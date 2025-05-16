@@ -55,8 +55,6 @@ class AdgeistModule(reactContext: ReactApplicationContext) :
   companion object {
     const val NAME = "Adgeist"
 
-    fun initialize(context: Context) {
-    }
   }
 }
 
