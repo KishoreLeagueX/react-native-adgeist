@@ -1,5 +1,5 @@
 import type { TurboModule } from 'react-native';
-import { TurboModuleRegistry, Platform } from 'react-native';
+import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
   fetchCreative(adSpaceId: string, publisherId: string): Promise<Object>;
@@ -11,11 +11,4 @@ export interface Spec extends TurboModule {
   ): Promise<Object>;
 }
 
-const AdgeistModule = Platform.select({
-  android: TurboModuleRegistry.getEnforcing<Spec>('Adgeist'),
-  default: {
-    fetchCreative: () => Promise.resolve({}),
-    sendCreativeAnalytic: () => Promise.resolve({}),
-  } as Spec,
-}) as Spec;
-export default AdgeistModule;
+export default TurboModuleRegistry.getEnforcing<Spec>('Adgeist');
