@@ -74,8 +74,8 @@ android {
   sourceSets {
     main {
       java.srcDirs += [
-        "${project.buildDir}/generated/source/codegen/java",
-        "${project.buildDir}/generated/source/codegen/jni"
+        "generated/java",
+        "generated/jni"
       ]
     }
   }
