@@ -1,6 +1,6 @@
 {
   "name": "react-native-adgeist",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "description": "Adtech platform to serve advertisements to publishers app",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
