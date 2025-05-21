@@ -1,9 +1,9 @@
 import Foundation
-import AdgeistCreatives
+import AdgeistKit
 import React
 
 @objc public class AdgeistImpl: NSObject {
-    private static let adGeist = AdGeistCore.shared
+    private static let adGeist = AdgeistCore.shared
     @objc public func fetchCreative(
         adSpaceId: String,
         publisherId: String,

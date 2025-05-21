@@ -7,6 +7,17 @@
   "source": "./src/index.tsx",
   "react-native": "./src/index.tsx",
   "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/typescript/src/index.d.ts",
+      "require": "./lib/commonjs/index.js",
+      "import": "./lib/module/index.js",
+      "react-native": "./src/index.tsx",
+      "default": "./lib/commonjs/index.js"
+    },
+    "./app.plugin.js": "./app.plugin.js",
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "lib",
@@ -169,6 +180,7 @@
     "source": "src",
     "output": "lib",
     "targets": [
+      "codegen",
       "commonjs",
       "module",
       [
@@ -183,9 +195,14 @@
     "name": "RNAdgeistSpec",
     "type": "modules",
     "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
     "android": {
       "javaPackageName": "com.adgeist"
-    }
+    },
+    "includesGeneratedCode": true
   },
   "create-react-native-library": {
     "languages": "kotlin-objc",
