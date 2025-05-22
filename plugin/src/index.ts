@@ -4,7 +4,8 @@ import {
   withPlugins,
 } from '@expo/config-plugins';
 
-import { withRNAdgeistMainActivity } from './withRNAdgeistMainActivity';
+import { withRNAdgeistMainApplication } from './android/withRNAdgeistMainApplication';
+import { withRNAdgeistAppDelegate } from './ios/withRNAdgeistAppDelegate';
 
 /**
  * So, expo config plugin are awesome and the documentation is well written, but I still needed to look around to see
@@ -17,7 +18,13 @@ import { withRNAdgeistMainActivity } from './withRNAdgeistMainActivity';
  * @param config
  */
 const withRNAdgeist: ConfigPlugin = (config) => {
-  return withPlugins(config, [withRNAdgeistMainActivity]);
+  return withPlugins(config, [
+    //Android
+    withRNAdgeistMainApplication,
+
+    //iOS
+    withRNAdgeistAppDelegate,
+  ]);
 };
 
 const pak = require('react-native-adgeist/package.json');

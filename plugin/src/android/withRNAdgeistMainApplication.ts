@@ -10,7 +10,7 @@ import {
 } from '@expo/config-plugins/build/android/Paths';
 import { mergeContents } from '@expo/config-plugins/build/utils/generateCode';
 
-export const withRNAdgeistMainActivity: ConfigPlugin = (config) => {
+export const withRNAdgeistMainApplication: ConfigPlugin = (config) => {
   return withAppBuildGradle(
     withMainApplication(config, readMainApplicationFileAndUpdateContents),
     readBuildGradleFileAndUpdateContents
