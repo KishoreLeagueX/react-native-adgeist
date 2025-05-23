@@ -15,6 +15,10 @@ buildscript {
   }
 }
 
+def isNewArchitectureEnabled() {
+    return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
+}
+
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
@@ -50,6 +54,7 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+    buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString())
   }
 
   buildFeatures {
@@ -73,10 +78,17 @@ android {
 
   sourceSets {
     main {
-      java.srcDirs += [
-        "generated/java",
-        "generated/jni"
-      ]
+      if(isNewArchitectureEnabled()){
+        java.srcDirs += [
+          "src/newarch",
+
+          // This is needed to build Kotlin project with NewArch enabled
+          "generated/java",
+          "generated/jni"
+        ]
+      }else{
+        java.srcDirs += ["src/oldarch"]
+      }
     }
   }
 }
@@ -95,8 +107,10 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-react {
-  jsRootDir = file("../src/")
-  libraryName = "Adgeist"
-  codegenJavaPackageName = "com.adgeist"
+if (isNewArchitectureEnabled()) {
+  react {
+    jsRootDir = file("../src/")
+    libraryName = "Adgeist"
+    codegenJavaPackageName = "com.adgeist"
+  }
 }
