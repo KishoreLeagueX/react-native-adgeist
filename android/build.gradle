@@ -83,8 +83,8 @@ android {
           "src/newarch",
 
           // This is needed to build Kotlin project with NewArch enabled
-          "generated/java",
-          "generated/jni"
+          "${project.buildDir}/generated/source/codegen/java",
+          "${project.buildDir}/generated/source/codegen/jni"
         ]
       }else{
         java.srcDirs += ["src/oldarch"]
