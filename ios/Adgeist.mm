@@ -20,10 +20,6 @@ RCT_EXPORT_MODULE(Adgeist)
     return self;
 }
 
-// Optional: Explicitly set the JS module name (not strictly required if using RCT_EXPORT_MODULE)
-+ (NSString *)moduleName {
-    return @"Adgeist";
-}
 
 // Exported methods for JS
 RCT_EXPORT_METHOD(fetchCreative:(NSString *)adSpaceId
