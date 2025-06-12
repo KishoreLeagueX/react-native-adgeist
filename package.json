@@ -5,6 +5,9 @@
   "main": "./lib/module/index.js",
   "module": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
+  "expo": {
+    "plugin": "./app.plugin.js"
+  },
   "files": [
     "src",
     "lib",
